@@ -11,14 +11,18 @@ namespace zajecia1
         {
             //MessageBox.Show("AiSD jest najlepsze!!!");
             int[] tab = { 8, 7, 2, 1, 3, 5, 2 };
-            for (int j = 1; j < tab.Length; j++)
-            {
-                if (tab[j] > tab[j-1])
-                    {
-                    tab[j] = tab[j - 1];
-                }
-
-            }
+            for (int j = 0; j < tab.Length; j++)
+ {
+     for (int i = 1; i < tab.Length; i++)
+     {
+         if (tab[i] < tab[i - 1])
+         {
+             t = tab[i - 1];
+             tab[i - 1] = tab[i];
+             tab[i] = t;
+         }
+     }
+ }
             string wynik = ToString(tab);
             MessageBox.Show(wynik);
         }
