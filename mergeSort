@@ -1,7 +1,4 @@
-Podany kod nie jest algorytmem Merge Sort (sortowanie przez scalanie), ale implementuje sortowanie przez wstawianie (Insertion Sort). Merge Sort to algorytm sortowania działający na zasadzie dziel i zwyciężaj (divide and conquer). Tablica jest dzielona na dwie części, każda z nich jest rekurencyjnie sortowana, a następnie obie części są scalane w jedną posortowaną tablicę.
-
-Przykład implementacji Merge Sort w C#:
-
+ 
 using System;
 
 class Program
