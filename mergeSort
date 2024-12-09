@@ -1,65 +1,44 @@
-        {
-            int[] tab = { 8, 7, 2, 1, 3, 5, 2 };
-            MergeSort(tab, 0, tab.Length-1);
-            
-            string wynik = ToString(tab);
-            MessageBox.Show(wynik);
-        }
-        void MergeSort(int[] T, int p, int r)
-        {
-            if (p < r)
-            {
-                int q = (p+r)/2;
-                MergeSort(T, p, q);
-                MergeSort(T,q+1,r);
-                Scal(T, p, q, r);
-            }
-        }
-        void Scal(int[] T, int p, int q, int r)
-        {
-            int n1 = q - p + 1;
-            int n2 = r - q;
-            int[] tabl = new int[n1];
-            int[] tabr = new int[n2];
+Podany kod nie jest algorytmem Merge Sort (sortowanie przez scalanie), ale implementuje sortowanie przez wstawianie (Insertion Sort). Merge Sort to algorytm sortowania działający na zasadzie dziel i zwyciężaj (divide and conquer). Tablica jest dzielona na dwie części, każda z nich jest rekurencyjnie sortowana, a następnie obie części są scalane w jedną posortowaną tablicę.
 
-            for (int i = 0; i < n1; i++)
-            {
-                tabl[i] = T[p+i];
-            }
-            for (int j = 0; j< n2; j++)
-            {
-                tabr[j] = T[q+1+j];
-            }
-            //indeksy poczatkowe dla podtablic i glownej tablicy
-            int iIndex = 0, jIndex = 0;
-            int k = p;
+Przykład implementacji Merge Sort w C#:
 
-            //scalanie tymczasowych tablic do glownej tablicy
-            while(iIndex < n1 && jIndex < n2) {
-            if (tabl[iIndex]<= tabr[jIndex])
-                {
-                    T[k] = tabl[iIndex];
-                    iIndex++;
-                }
-            else
-                {
-                    T[k] = tabr[jIndex];
-                    jIndex++;
-                }
-                k++;
-            }
-            //kopiowanie pozostalych elementow z lewej tablicy
-            while(iIndex < n1)
-            {
-                T[k]= tabl[iIndex];
-                iIndex++;
-                k++;
-            }
-            //kopiowanie pozostalych elementow z prawej tablicy
-            while (jIndex < n2)
-            {
-                T[k]= tabr[jIndex];
-                jIndex++;
-                k++;
-            }
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] tab = { 8, 7, 2, 1, 3, 5, 2 };
+        
+        // Wywołanie funkcji sortującej
+        MergeSort(tab, 0, tab.Length - 1);
+
+        // Wyświetlenie posortowanej tablicy
+        Console.WriteLine(string.Join(", ", tab));
+    }
+
+    static void MergeSort(int[] tab, int left, int right)
+    {
+        if (left < right)
+        {
+            // Znajdź środek
+            int middle = (left + right) / 2;
+
+            // Sortuj lewą część
+            MergeSort(tab, left, middle);
+
+            // Sortuj prawą część
+            MergeSort(tab, middle + 1, right);
+
+            // Scal posortowane części
+            Merge(tab, left, middle, right);
         }
+    }
+
+    static void Merge(int[] tab, int left, int middle, int right)
+    {
+        int n1 = middle - left + 1;
+        int n2 = right - middle;
+
+        // Tworzymy tymczasowe tablice
+
