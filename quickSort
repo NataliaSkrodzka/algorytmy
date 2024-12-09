@@ -22,6 +22,7 @@
                         i++;
                         j--;
                     }
+                }
                     if (j > l)
                     {
                         QuickSort(tab, l, j);
@@ -30,6 +31,6 @@
                     {
                         QuickSort(tab, i, r);
                     }
-                }
+                
             }
         }
