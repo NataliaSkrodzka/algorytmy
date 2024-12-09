@@ -1,0 +1,35 @@
+        void QuickSort(int[] tab, int l, int r)
+        {
+            if (l < r)
+            {
+                int pivot = tab[l + (r-l) / 2];
+                int i = l; int j = r;
+                while (i <= j)
+                {
+                    while (tab[i] < pivot)
+                    {
+                        i++;
+                    }
+                    while (tab[j] > pivot)
+                    {
+                        j--;
+                    }
+                    if (i <= j)
+                    {
+                        int temp = tab[i];
+                        tab[i] = tab[j];
+                        tab[j] = temp;
+                        i++;
+                        j--;
+                    }
+                    if (j > l)
+                    {
+                        QuickSort(tab, l, j);
+                    }
+                    if (i < r)
+                    {
+                        QuickSort(tab, i, r);
+                    }
+                }
+            }
+        }
