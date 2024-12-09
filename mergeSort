@@ -41,4 +41,94 @@ class Program
         int n2 = right - middle;
 
         // Tworzymy tymczasowe tablice
+        int[] leftArray = new int[n1];
+        int[] rightArray = new int[n2];
+
+        // Kopiujemy dane do tymczasowych tablic
+        for (int i = 0; i < n1; i++)
+            leftArray[i] = tab[left + i];
+        for (int j = 0; j < n2; j++)
+            rightArray[j] = tab[middle + 1 + j];
+
+        // Indeksy początkowe dla obu tymczasowych tablic
+        int iLeft = 0, iRight = 0;
+
+        // Indeks początkowy dla scalonej tablicy
+        int k = left;
+
+        // Scalanie
+        while (iLeft < n1 && iRight < n2)
+        {
+            if (leftArray[iLeft] <= rightArray[iRight])
+            {
+                tab[k] = leftArray[iLeft];
+                iLeft++;
+            }
+            else
+            {
+                tab[k] = rightArray[iRight];
+                iRight++;
+            }
+            k++;
+        }
+
+        // Kopiowanie pozostałych elementów, jeśli są w lewej tablicy
+        while (iLeft < n1)
+        {
+            tab[k] = leftArray[iLeft];
+            iLeft++;
+            k++;
+        }
+
+        // Kopiowanie pozostałych elementów, jeśli są w prawej tablicy
+        while (iRight < n2)
+        {
+            tab[k] = rightArray[iRight];
+            iRight++;
+            k++;
+        }
+    }
+}
+
+Wyjaśnienie kodu:
+
+1. MergeSort:
+
+Funkcja rekurencyjnie dzieli tablicę na dwie części (lewa i prawa).
+
+Wywołuje samą siebie dla obu części, aż do momentu, gdy podtablica zawiera tylko jeden element (lub jest pusta).
+
+
+
+2. Merge:
+
+Funkcja scalam posortowane części tablicy.
+
+Tworzy dwie tymczasowe tablice, kopiuje do nich odpowiednie fragmenty oryginalnej tablicy, a następnie scala je w jeden posortowany fragment.
+
+
+
+3. Sortowanie i scalanie:
+
+W Merge elementy są porównywane i wstawiane do oryginalnej tablicy w kolejności rosnącej.
+
+Pozostałe elementy z obu części są kopiowane na końcu.
+
+
+
+
+Wynik działania:
+
+Dla tablicy { 8, 7, 2, 1, 3, 5, 2 } algorytm zwróci:
+
+1, 2, 2, 3, 5, 7, 8
+
+Cechy Merge Sort:
+
+Czas działania: O(n log n) w najlepszym, średnim i najgorszym przypadku.
+
+Złożoność pamięciowa: O(n) ze względu na użycie dodatkowej pamięci dla tymczasowych tablic.
+
+Jest stabilny (nie zmienia kolejności równych elementów).
+
 
