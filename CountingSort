@@ -1,0 +1,35 @@
+void CountingSort(int[] tab)
+{
+    int maxValue = MaxValue(tab);//szukamy najwiekszego z tablicy, zeby zrobic nowa tablice o takiej dlugosci +1 na 0
+    int[] occurences = new int[maxValue+1];
+    for(int i = 0; i < maxValue + 1; i++)//nowa tablice wypelniamy zerami
+    {
+        occurences[i] = 0;
+    }
+    for(int i = 0;i< tab.Length; i++)//w miejscach wartosci z tab - dodajemy 1 w tym miejscu w indeksie w nowej
+    {
+        occurences[tab[i]]++;
+    }
+    for (int i = 0, j = 0; i < occurences.Length; i++)//wypelniamy taba indeksami z nowej tam gdzie sa wieksze
+                                                      //i tyle razy ile dany ideks tyle takich cyfr
+    {
+        while (occurences[i] > 0)
+        {
+            tab[j] = i;
+            occurences[i]--;
+            j++;
+        }
+    }
+}
+int MaxValue(int[] tab)//znalezienie nawiekszego z tablicy 
+{
+    int max = tab[0];
+    for(int i =1; i<tab.Length; i++)
+    {
+        if (tab[i] > max)
+        {
+            max= tab[i];
+        }
+    }
+    return max;
+}
