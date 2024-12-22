@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WindowsFormsApp3
+{
+    internal class NodeGS
+    {
+        NodeGS lewe;
+        NodeGS prawe;
+        NodeGS rodzic;
+        public int data;
+        public char? symbol;
+
+        public NodeGS(int data, char? symbol)
+        {
+
+            this.data = data;
+            this.symbol = symbol;
+        }
+    }
+}
