@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnKoduj_Click(object sender, EventArgs e)
+        {
+
+            var wynik = Czestosc(tbText.Text);
+            var lista = ListaWezlow(wynik);
+            lista = lista.OrderBy(n => n.data).ThenBy(n => n.symbol == null ? 1 : 0).ToList();
+
+
+
+
+        }
+        Dictionary<char,int>Czestosc(string text)
+        {
+            var wynik = new Dictionary<char,int>();
+            foreach(var znak in text)
+            {
+                if (!wynik.ContainsKey(znak))
+                {
+                    wynik.Add(znak, 1);
+                }
+                else
+                {
+                    wynik[znak]++;
+                }
+            }
+            return wynik;
+        }
+        List<NodeGS> ListaWezlow(Dictionary<char, int>dict)
+        {
+            List<NodeGS> list = new List<NodeGS>();
+            foreach (var item in dict)
+            {
+                NodeGS wezel = new NodeGS(item.Value, item.Key);
+            }
+            return list;
+        }
+
+
+
+    }
+}
